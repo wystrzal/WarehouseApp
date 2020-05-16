@@ -1,0 +1,18 @@
+.nav-tabs {
+  min-width: 480px;
+}
+.nav-tabs .nav-link {
+  background-color: rgb(46, 139, 87);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}
+.nav-tabs .nav-link:hover {
+  background-color: rgba(46, 139, 87, 0.8);
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.nav-tabs .nav-link.active {
+  background-color: green;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: #fff;
+}

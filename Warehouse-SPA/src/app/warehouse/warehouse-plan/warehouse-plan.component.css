@@ -1,0 +1,11 @@
+button {
+  width: 150px;
+}
+td,
+th {
+  padding: 0px;
+  vertical-align: middle;
+}
+.through {
+  text-decoration: line-through;
+}

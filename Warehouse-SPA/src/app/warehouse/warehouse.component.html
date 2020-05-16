@@ -1,0 +1,14 @@
+<tabset [justified]="true">
+  <tab heading="BC4" id="tab1" (selectTab)="changeLine($event)">
+    <app-warehouse-plan [lineName]="lineName"></app-warehouse-plan>
+  </tab>
+  <tab heading="BC3" (selectTab)="changeLine($event)">
+    <app-warehouse-plan [lineName]="lineName"></app-warehouse-plan>
+  </tab>
+  <tab heading="BC2" (selectTab)="changeLine($event)">
+    <app-warehouse-plan [lineName]="lineName"></app-warehouse-plan>
+  </tab>
+  <tab heading="BC1" (selectTab)="changeLine($event)">
+    <app-warehouse-plan [lineName]="lineName"></app-warehouse-plan>
+  </tab>
+</tabset>

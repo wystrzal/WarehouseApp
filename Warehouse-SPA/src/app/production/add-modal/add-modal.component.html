@@ -1,0 +1,78 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Nowe zamówienie</h4>
+  <button
+    type="button"
+    class="close pull-right"
+    aria-label="Close"
+    (click)="bsModalRef.hide()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #addForm="ngForm" id="addForm">
+    <div class="form-group">
+      <label for="reference">Referencja</label>
+      <input
+        #focus
+        name="reference"
+        [(ngModel)]="model.reference"
+        type="text"
+        class="form-control"
+        id="reference"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="amount">Ilość</label>
+      <input
+        name="amount"
+        [(ngModel)]="model.amount"
+        type="number"
+        class="form-control"
+        id="amount"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="amountRepeat">Ilość powtórzeń</label>
+      <input
+        name="repeatAmount"
+        [(ngModel)]="repeatAmount"
+        type="number"
+        class="form-control"
+        id="amountRepeat"
+        required
+        [customMax]="maxNum"
+        #repeatValidator="ngModel"
+      />
+      <div *ngIf="repeatValidator.errors?.customMax" class="text-danger">
+        Maksymalna liczba wynosi {{ maxNum }}
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="position">Pozycja</label>
+      <input
+        name="position"
+        [(ngModel)]="model.position"
+        type="number"
+        class="form-control"
+        id="position"
+      />
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">
+    Cancel
+  </button>
+  <button
+    [disabled]="!addForm.valid"
+    type="submit"
+    class="btn btn-success"
+    (click)="newOrder($event)"
+    form="addForm"
+  >
+    Submit
+  </button>
+</div>

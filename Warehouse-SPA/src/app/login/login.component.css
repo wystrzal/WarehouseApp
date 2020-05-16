@@ -1,0 +1,67 @@
+.login-bg {
+  background: url("../../assets/images/login.jpg") no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -100;
+}
+
+.login-overlay {
+  z-index: -50;
+  background: rgba(0, 0, 0, 0.7);
+  min-width: 100%;
+  min-height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  height: 50%;
+  width: 50%;
+  border-radius: 15px;
+  box-shadow: 10px 10px 25px #000;
+}
+
+.login-box-content {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 50%;
+}
+
+.hr {
+  border: 1px solid #0d993f;
+}
+
+@media (max-height: 800px) {
+  .login-box-content {
+    top: 10%;
+  }
+}
+@media (max-height: 600px) {
+  .login-box {
+    height: 65%;
+  }
+}
+@media (max-height: 450px) {
+  .login-box {
+    height: 85%;
+  }
+}
+
+@media (max-width: 800px) {
+  .login-box {
+    width: 70%;
+  }
+}

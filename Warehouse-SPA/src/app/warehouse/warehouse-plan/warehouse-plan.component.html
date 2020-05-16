@@ -1,0 +1,46 @@
+<table class="table border text-center" style="min-width: 480px;">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Rodzaj</th>
+      <th scope="col">Obudowa</th>
+      <th scope="col">Pokrywa</th>
+      <th scope="col">Ilość</th>
+      <th *ngIf="lineName == 'bc4'" scope="col">Komora</th>
+      <th scope="col">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of plan; let i = index">
+      <th scope="row">{{ order.position }}</th>
+      <td>{{ order.typeOfCasing }}</td>
+      <td>{{ order.casing }}</td>
+      <td>{{ order.cover }}</td>
+      <td>{{ order.amount }}</td>
+      <td *ngIf="lineName == 'bc4'">{{ order.chamber }}</td>
+      <td>
+        <button
+          (click)="changeStatus(order.id, i)"
+          *ngIf="order.status === 'Nowe'"
+          class="btn btn-danger"
+        >
+          {{ order.status }}
+        </button>
+        <button
+          (click)="changeStatus(order.id, i)"
+          *ngIf="order.status === 'Załadowane'"
+          class="btn btn-warning"
+        >
+          {{ order.status }}
+        </button>
+        <button
+          (dblclick)="resetStatus(order.id, i)"
+          *ngIf="order.status === 'Dostarczone'"
+          class="btn btn-success"
+        >
+          {{ order.status }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
