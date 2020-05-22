@@ -1,19 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DatingApp.API.Data;
+using Warehouse.API.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using SEIP.API.Data;
-using SEIP.API.Models;
+using Warehouse.API.Models;
 
-namespace SEIP.API
+namespace Warehouse.API
 {
     public class Program
     {
@@ -29,7 +24,7 @@ namespace SEIP.API
                     var userManager = services.GetRequiredService<UserManager<User>>();
                     var roleManager = services.GetRequiredService<RoleManager<Role>>();
                     context.Database.Migrate();
-                    Seed.SeedUsers(userManager, roleManager);
+                    DataSeed.SeedUsers(userManager, roleManager);
                 }
                 catch (Exception ex)
                 {

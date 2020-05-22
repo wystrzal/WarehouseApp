@@ -21,11 +21,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using SEIP.API.Data;
-using SEIP.API.Helpers;
-using SEIP.API.Models;
+using Warehouse.API.Data;
+using Warehouse.API.Helpers;
+using Warehouse.API.Models;
 
-namespace SEIP.API
+namespace Warehouse.API
 {
     public class Startup
     {
@@ -36,22 +36,10 @@ namespace SEIP.API
 
         public IConfiguration Configuration { get; }
 
-        public void ConfigureDevelopmentServices(IServiceCollection services)
-        {
-            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-
-            ConfigureServices(services);
-        }
-
-        public void ConfigureProductionServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            ConfigureServices(services);
-        }
-
-        public void ConfigureServices(IServiceCollection services)
-        {       
             IdentityBuilder builder = services.AddIdentityCore<User>(opt =>
             {
                 opt.Password.RequireDigit = false;

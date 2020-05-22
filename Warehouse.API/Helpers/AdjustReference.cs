@@ -1,10 +1,10 @@
-﻿using SEIP.API.Dtos;
+﻿using Warehouse.API.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SEIP.API.Helpers
+namespace Warehouse.API.Helpers
 {
     public static class AdjustReference
     {

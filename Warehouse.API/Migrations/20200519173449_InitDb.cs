@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SEIP.API.Migrations
+namespace Warehouse.API.Migrations
 {
-    public partial class SqlServerInit : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

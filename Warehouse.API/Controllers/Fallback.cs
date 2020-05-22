@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 
 
-namespace SEIP.API.Controllers
+namespace Warehouse.API.Controllers
 {
     [AllowAnonymous]
     public class Fallback : Controller

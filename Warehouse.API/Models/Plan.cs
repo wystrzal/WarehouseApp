@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SEIP.API.Models
+namespace Warehouse.API.Models
 {
     public class Plan
     {

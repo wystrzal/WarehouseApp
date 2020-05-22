@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SEIP.API.Models;
+using Warehouse.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SEIP.API.Data
+namespace Warehouse.API.Data
 {
     public class DataContext : IdentityDbContext<User, Role, int,
      IdentityUserClaim<int>, UserRole, IdentityUserLogin<int>,

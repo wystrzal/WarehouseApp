@@ -11,9 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using SEIP.API.Data;
-using SEIP.API.Dtos;
-using SEIP.API.Models;
+using Warehouse.API.Data;
+using Warehouse.API.Dtos;
+using Warehouse.API.Models;
 
 namespace DatingApp.API.Controllers
 {

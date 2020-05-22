@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SEIP.API.Data;
+using Warehouse.API.Data;
 
-namespace SEIP.API.Migrations
+namespace Warehouse.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200310190909_SqlServerInit")]
-    partial class SqlServerInit
+    [Migration("20200519173449_InitDb")]
+    partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -107,7 +107,7 @@ namespace SEIP.API.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SEIP.API.Models.Plan", b =>
+            modelBuilder.Entity("Warehouse.API.Models.Plan", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -149,7 +149,7 @@ namespace SEIP.API.Migrations
                     b.ToTable("Plans");
                 });
 
-            modelBuilder.Entity("SEIP.API.Models.Role", b =>
+            modelBuilder.Entity("Warehouse.API.Models.Role", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -178,7 +178,7 @@ namespace SEIP.API.Migrations
                     b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("SEIP.API.Models.User", b =>
+            modelBuilder.Entity("Warehouse.API.Models.User", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -245,7 +245,7 @@ namespace SEIP.API.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SEIP.API.Models.UserRole", b =>
+            modelBuilder.Entity("Warehouse.API.Models.UserRole", b =>
                 {
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -262,7 +262,7 @@ namespace SEIP.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("SEIP.API.Models.Role", null)
+                    b.HasOne("Warehouse.API.Models.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -271,7 +271,7 @@ namespace SEIP.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("SEIP.API.Models.User", null)
+                    b.HasOne("Warehouse.API.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -280,7 +280,7 @@ namespace SEIP.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("SEIP.API.Models.User", null)
+                    b.HasOne("Warehouse.API.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -289,22 +289,22 @@ namespace SEIP.API.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("SEIP.API.Models.User", null)
+                    b.HasOne("Warehouse.API.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SEIP.API.Models.UserRole", b =>
+            modelBuilder.Entity("Warehouse.API.Models.UserRole", b =>
                 {
-                    b.HasOne("SEIP.API.Models.Role", "Role")
+                    b.HasOne("Warehouse.API.Models.Role", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SEIP.API.Models.User", "User")
+                    b.HasOne("Warehouse.API.Models.User", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

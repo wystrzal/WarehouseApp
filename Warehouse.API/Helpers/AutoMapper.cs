@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
-using SEIP.API.Dtos;
-using SEIP.API.Models;
+using Warehouse.API.Dtos;
+using Warehouse.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SEIP.API.Helpers
+namespace Warehouse.API.Helpers
 {
     public class AutoMapper : Profile
     {

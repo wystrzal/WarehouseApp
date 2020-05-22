@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
-using SEIP.API.Models;
+using Warehouse.API.Models;
 
-namespace DatingApp.API.Data
+namespace Warehouse.API.Data
 {
-    public class Seed
+    public class DataSeed
     {
         public static void SeedUsers(UserManager<User> userManager, RoleManager<Role> roleManager)
         {

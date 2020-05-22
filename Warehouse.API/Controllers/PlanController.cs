@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using SEIP.API.Data;
-using SEIP.API.Dtos;
-using SEIP.API.Helpers;
-using SEIP.API.Models;
+using Warehouse.API.Data;
+using Warehouse.API.Dtos;
+using Warehouse.API.Helpers;
+using Warehouse.API.Models;
 
-namespace SEIP.API.Controllers
+namespace Warehouse.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

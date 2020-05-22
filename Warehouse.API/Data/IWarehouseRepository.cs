@@ -1,10 +1,10 @@
-﻿using SEIP.API.Models;
+﻿using Warehouse.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SEIP.API.Data
+namespace Warehouse.API.Data
 {
     public interface IWarehouseRepository
     {
