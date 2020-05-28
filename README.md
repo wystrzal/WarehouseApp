@@ -30,11 +30,13 @@ To run SPA open Warehouse folder with Visual Studio Code and
 `cd Warehouse-SPA` 
 `npm install`
 `ng serve`
+
 Open http://localhost:4200
 
 * Passwords:
 Production:
 bc1/bc1
+
 Warehouse:
 mag/mag
 
