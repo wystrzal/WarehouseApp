@@ -8,9 +8,9 @@ namespace Warehouse.API.Helpers
 {
     public static class AdjustReference
     {
-        public static PlanForCreationDto CreateNewOrder(string reference)
+        public static CreateOrderDto CreateNewOrder(string reference)
         {
-            var order = new PlanForCreationDto();
+            var order = new CreateOrderDto();
 
             switch (reference)
             {

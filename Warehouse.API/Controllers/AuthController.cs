@@ -46,12 +46,9 @@ namespace DatingApp.API.Controllers
 
             if (result.Succeeded)
             {
-                var userToReturn = await userManager.Users
-                .FirstOrDefaultAsync(u => u.Id == dbUser.Id);
-
                 return Ok(new
                 {
-                    token = GenerateJwtToken(userToReturn).Result,
+                    token = GenerateJwtToken(dbUser).Result,
                 });
             }
             return Unauthorized();
@@ -67,9 +64,12 @@ namespace DatingApp.API.Controllers
 
             var roles = await userManager.GetRolesAsync(user);
 
-            foreach (var role in roles)
+            if (roles.Count > 0 && roles != null)
             {
-                claims.Add(new Claim(ClaimTypes.Role, role));
+                foreach (var role in roles)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                }
             }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8

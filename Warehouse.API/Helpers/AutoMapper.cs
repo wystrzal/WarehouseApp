@@ -12,9 +12,9 @@ namespace Warehouse.API.Helpers
     {
         public AutoMapper()
         {
-            CreateMap<Plan, PlanForWarehouseDto>();
-            CreateMap<PlanForCreationDto, Plan>();
-            CreateMap<PlanForChangeStatusDto, Plan>();
+            CreateMap<Plan, WarehousePlanDto>();
+            CreateMap<CreateOrderDto, Plan>();
+            CreateMap<ChangeStatusDto, Plan>();
         }
     }
 }

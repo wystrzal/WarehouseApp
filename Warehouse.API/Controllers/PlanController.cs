@@ -18,13 +18,13 @@ namespace Warehouse.API.Controllers
     [ApiController]
     public class PlanController : ControllerBase
     {
-        private readonly IWarehouseRepository seipRepository;
+        private readonly IWarehouseRepository warehouseRepository;
         private readonly IMapper mapper;
         private readonly UserManager<User> userManager;
 
         public PlanController(IWarehouseRepository seipRepository, IMapper mapper, UserManager<User> userManager)
         {
-            this.seipRepository = seipRepository;
+            this.warehouseRepository = seipRepository;
             this.mapper = mapper;
             this.userManager = userManager;
         }
@@ -34,9 +34,9 @@ namespace Warehouse.API.Controllers
         [HttpGet("warehouse/{line}")]
         public async Task<IActionResult> GetOrdersForWarehouse(string line)
         {
-            var orders = await seipRepository.GetOrders(line);
+            var orders = await warehouseRepository.GetOrders(line);
 
-            var ordersForWarehouse = mapper.Map<IEnumerable<PlanForWarehouseDto>>(orders);
+            var ordersForWarehouse = mapper.Map<IEnumerable<WarehousePlanDto>>(orders);
 
             return Ok(ordersForWarehouse);
         }
@@ -46,7 +46,7 @@ namespace Warehouse.API.Controllers
         [HttpGet("production/{line}")]
         public async Task<IActionResult> GetOrdersForProduction(string line)
         {
-            var orders = await seipRepository.GetOrders(line);
+            var orders = await warehouseRepository.GetOrders(line);
 
             return Ok(orders);
         }
@@ -56,29 +56,31 @@ namespace Warehouse.API.Controllers
         [Authorize(Roles = "Production")]
         [HttpPost("{line}/{id}")]
         public async Task<IActionResult> AddOrder(string line, int id,
-            PlanForReferenceToCreationDto planForReferenceToCreationDto, [FromQuery]int repeatAmount)
+            ReferenceToAddOrderDto referenceToAddOrder, [FromQuery]int repeatAmount)
         {
             var currentUser = await userManager.FindByIdAsync(id.ToString());
 
-            var order = AdjustReference.CreateNewOrder(planForReferenceToCreationDto.Reference);
+            var order = AdjustReference.CreateNewOrder(referenceToAddOrder.Reference);
 
             if (order.Reference == null)
+            {
                 return BadRequest("Podana referencja jest nieprawidłowa");
+            }
 
             order.Status = "Nowe";
             order.Line = currentUser.UserName;
-            order.Amount = planForReferenceToCreationDto.Amount;
+            order.Amount = referenceToAddOrder.Amount;
 
-            var orders = await seipRepository.GetOrders(line);
+            var orders = await warehouseRepository.GetOrders(line);
 
             for (int j = 0; j < repeatAmount; j++)
             {
                 var position = orders.Select(o => o.Position).ToList();
 
                 //If entered position is greater than zero, all other orders positions add plus one.
-                if (planForReferenceToCreationDto.Position > 0)
+                if (referenceToAddOrder.Position > 0)
                 {
-                    var positionToCheck = position.Where(p => p >= planForReferenceToCreationDto.Position).ToList();
+                    var positionToCheck = position.Where(p => p >= referenceToAddOrder.Position).ToList();
 
                     for (int i = 0; i < positionToCheck.Count(); i++)
                     {
@@ -88,7 +90,7 @@ namespace Warehouse.API.Controllers
                     }
                  
                     //Add to new position entered position and current j value.
-                    order.Position = planForReferenceToCreationDto.Position + j;
+                    order.Position = referenceToAddOrder.Position + j;
                 }
                 else
                 {
@@ -109,11 +111,13 @@ namespace Warehouse.API.Controllers
 
                 var newOrder = mapper.Map<Plan>(order);
 
-                seipRepository.Add(newOrder);             
+                warehouseRepository.Add(newOrder);             
             }
 
-            if (await seipRepository.SaveAll())
-                return NoContent();
+            if (await warehouseRepository.SaveAll())
+            {
+                return Ok();
+            }    
 
     
             return BadRequest("Nie udało się dodać zamówienia.");
@@ -122,16 +126,16 @@ namespace Warehouse.API.Controllers
         //Change status for selected order.
         [Authorize(Roles = "Warehouse")]
         [HttpPut("{id}")]
-        public async Task<IActionResult> ChangeStatus(int id, PlanForChangeStatusDto planForChangeStatusDto)
+        public async Task<IActionResult> ChangeStatus(int id, ChangeStatusDto changeStatus)
         {
-            var order = await seipRepository.GetOrder(id);
+            var order = await warehouseRepository.GetOrder(id);
 
             if (order == null)
                 return NotFound();
             
-            mapper.Map(planForChangeStatusDto, order);
+            mapper.Map(changeStatus, order);
 
-            if (await seipRepository.SaveAll())
+            if (await warehouseRepository.SaveAll())
                 return Ok();
 
             return BadRequest("Nie udało się zmienić statusu.");        
@@ -142,12 +146,12 @@ namespace Warehouse.API.Controllers
         [HttpPost("{line}/delete/{id}")]
         public async Task<IActionResult> DeleteOrder(string line, int id)
         {
-            var order = await seipRepository.GetOrder(id);
+            var order = await warehouseRepository.GetOrder(id);
 
             if (order == null)
                 return NotFound("Nie znaleziono.");
 
-            var orders = await seipRepository.GetOrders(line);
+            var orders = await warehouseRepository.GetOrders(line);
 
             var orderPosition = order.Position;
 
@@ -159,9 +163,9 @@ namespace Warehouse.API.Controllers
                 currentPosition.Position -= 1;
             }
 
-            seipRepository.Delete(order);
+            warehouseRepository.Delete(order);
 
-            if (await seipRepository.SaveAll())
+            if (await warehouseRepository.SaveAll())
                 return NoContent();
 
             return BadRequest("Nie udało się usunąć zamówienia.");   

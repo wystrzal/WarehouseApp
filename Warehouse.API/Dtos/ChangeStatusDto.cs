@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Warehouse.API.Dtos
 {
-    public class PlanForChangeStatusDto
+    public class ChangeStatusDto
     {
         public string Status { get; set; }
     }
