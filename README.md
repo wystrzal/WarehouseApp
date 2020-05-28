@@ -33,11 +33,12 @@ To run SPA open Warehouse folder with Visual Studio Code and
 
 Open http://localhost:4200
 
-* Passwords:
+Passwords:
+
 Production:
-bc1/bc1
+ bc1/bc1
 
 Warehouse:
-mag/mag
+ mag/mag
 
 Example reference to add: 430000
