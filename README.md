@@ -1,5 +1,5 @@
 # WarehouseApp
-My 2# project.
+My #2 project.
 
 ## Table of contents
 * [General info](#general-info)
