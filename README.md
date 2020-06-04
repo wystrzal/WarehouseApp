@@ -24,9 +24,12 @@ Production can orders new parts and warehouse get orders.
 * SQL Server.
 
 ## Setup
+Requirements:
+* Microsoft SQL Server
+
 To run API open Warehouse.API.sln with Visual Studio, change from IIS Express to Warehouse.API and press F5.
 
-To run SPA open Warehouse folder with Visual Studio Code and 
+To run SPA open Warehouse folder in command-line or Visual Studio Code and 
 `cd Warehouse-SPA` 
 `npm install`
 `ng serve`
