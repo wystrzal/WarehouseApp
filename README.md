@@ -25,6 +25,7 @@ Production can orders new parts and warehouse get orders.
 
 ## Setup
 Requirements:
+* SQL Server Management Studio
 * Microsoft SQL Server
 * Node.js
 * Angular CLI
